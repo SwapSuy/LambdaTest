@@ -1,0 +1,18 @@
+{
+    "default":{
+        "dryRun": false,
+        "formatOptions": {
+            "snippetInterface":"async-await"
+        },
+
+        "paths": ["lambda-bdd-ts/tests/features/**/*.feature"],
+        "require": [
+            "lambda-bdd-ts/tests/steps/**/*.ts",
+            "lambda-bdd-ts/support/hooks.ts"
+        ],
+        "requireModule":[
+            "ts-node/register"
+        ],
+        "format":[]
+    }
+}
