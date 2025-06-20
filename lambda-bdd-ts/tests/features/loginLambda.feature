@@ -1,7 +1,7 @@
 Feature: Authenticate Lambdatest
    @Regression
   Scenario: Authenticate Lambdatest with Standard User
-    Given login to Lambda application with "anshika@gmail.com" and "Iamking@000"
+    Given login to Lambda application with "suyash.joshi27@gmail.com" and "Suy437429j"
     When click on Login Button
     Then User should be logged in succesfully
 
