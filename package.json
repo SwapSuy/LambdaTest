@@ -1,0 +1,28 @@
+{
+  "name": "projectlambdatest",
+  "version": "1.0.0",
+  "description": "Lambda Test Project with BDD Cucumber Framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "pw js ts "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SwapSuy/LambdaTest.git"
+  },
+  "author": "SwapSuy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SwapSuy/LambdaTest/issues"
+  },
+  "homepage": "https://github.com/SwapSuy/LambdaTest#readme",
+  "devDependencies": {
+    "@cucumber/cucumber": "^11.3.0",
+    "@playwright/test": "^1.53.1",
+    "cucumber-html-reporter": "^7.2.0",
+    "dotenv": "^16.5.0",
+    "playwright": "^1.53.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
