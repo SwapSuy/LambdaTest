@@ -19,7 +19,7 @@ Before(async function (this: CustomWorld) {
   });
   const context = await this.browser.newContext();
   this.page = await context.newPage();
-  await this.page.goto('https://ecommerce-playground.lambdatest.io/index.php?route=account/login');
+  
 });
 
 After(async function (this: CustomWorld) {
