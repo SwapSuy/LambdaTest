@@ -1,16 +1,14 @@
 Feature: Register Lambdatest
-   @Regression
-  Scenario: Register on Lambdatest with mandatory Test data
+   
+  Scenario Outline: Register on Lambdatest with mandatory Test data
     Given Launch the Lambdatest web application
     When click on Register Button
     Then User should be on Register Account page
-    Then user enters values "<First Name>", "<Last Name>", "<E-Mail>","<Telephone>","<Password>","<Password Confirm>"
+    Then user enters values "<FirstName>", "<LastName>", "<E-Mail>", "<Telephone>", "<Password>", "<PasswordConfirm>"
     Then user clicks on Privacy Policy radio Button
     Then user clicks on Continue Button
+    Then user account is created
 
-    Example:
-
-    |First Name   | Last Name  |E-Mail          |Telephone   |Password    |Password Confirm    |
-    |Rahul        |Vaidya      |asasa@dsadsa.com|9823121232  |Rahul1      |Rahul1              |
-
-    
+    Examples:
+      | FirstName | LastName | E-Mail            | Telephone  | Password         | PasswordConfirm         |
+      | Rahul     | Vaidya   | asasa3@dsadsa.com | 9823121232 | Rahuldeshmukh1   | Rahuldeshmukh1          |
