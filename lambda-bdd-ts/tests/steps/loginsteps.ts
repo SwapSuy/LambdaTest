@@ -1,25 +1,30 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect, Page } from '@playwright/test';
+import { LoginPage} from '../pages/loginPage';
 
-Given('login to Lambda application with {string} and {string}', async function (string, string2) {
+interface CustomWorld{
+  page:Page;
+  loginPage:LoginPage;
+
+
+}
+
+Given('login to Lambda application with {string} and {string}',{ timeout: 100 * 1000 }, async function (this: CustomWorld, username: string, password: string) {
+           await this.loginPage.goToU();
+           await this.loginPage.validLogin(username, password);
            
+         });
+
+When('click on Login Button',{ timeout: 100 * 1000 }, async function (this: CustomWorld) {
+           await this.loginPage.clickLoginBtn();
            
          });
 
-When('click on Login Button', async function () {
-           // Write code here that turns the phrase above into concrete actions
-           console.log("Test 1nnnnnnnnnnnnnnnnnnnnnnnnnn2");
-           return 'pending';
+Then('User should be logged in succesfully', async function (this: CustomWorld) {
+           await this.loginPage.validSuccessfulLogin();
+           
          });
 
-Then('User should be logged in succesfully', async function () {
-           // Write code here that turns the phrase above into concrete actions
-           console.log("Test 1nnnnnnnnnnnnnnnnnnnnnnnnnn3");
-           return 'pending';
-         });
-
-Then('User should Not be logged in succesfully and error message should be displayed', async function () {
-           // Write code here that turns the phrase above into concrete actions
-           console.log("Test 1nnnnnnnnnnnnnnnnnnnnnnnnnn4");
-           return 'pending';
+Then('User should Not be logged in succesfully and error message should be displayed {string}', async function (this: CustomWorld, ErrorMessage: string) {
+           await this.loginPage.unauthorizedLogin(ErrorMessage)
          });

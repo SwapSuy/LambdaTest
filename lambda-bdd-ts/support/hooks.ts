@@ -1,4 +1,5 @@
 import { chromium, Browser, Page } from '@playwright/test';
+import {LoginPage} from '../tests/pages/loginPage';
 import {
   Before,
   After,
@@ -11,6 +12,7 @@ import {
 interface CustomWorld {
   page: Page;
   browser: Browser;
+  loginPage:LoginPage;
 }
 
 Before(async function (this: CustomWorld) {
@@ -19,6 +21,8 @@ Before(async function (this: CustomWorld) {
   });
   const context = await this.browser.newContext();
   this.page = await context.newPage();
+
+  this.loginPage = new LoginPage(this.page);
   
 });
 
