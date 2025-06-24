@@ -1,4 +1,4 @@
-import { test, expect, Locator, Page } from '@playwright/test';
+import { test, expect, Locator, Page } from "@playwright/test";
 
 export class registerPage {
   page: Page;
@@ -27,12 +27,14 @@ export class registerPage {
 
   async goToU() {
     if (!this.page.isClosed()) {
-    await this.page.goto("https://ecommerce-playground.lambdatest.io/index.php?route=account/login");
-  }
+      await this.page.goto(
+        "https://ecommerce-playground.lambdatest.io/index.php?route=account/login"
+      );
+    }
   }
 
   async clickonRegisterButton() {
-    await this.register.waitFor({ state: 'visible', timeout: 5000 });
+    await this.register.waitFor({ state: "visible", timeout: 5000 });
     await this.register.click();
   }
 
@@ -44,34 +46,31 @@ export class registerPage {
     Password: string,
     PasswordConfirm: string
   ) {
-     await this.firstName.fill(FirstName)
-        await this.lastName.fill(LastName);
-        await this.email.fill(uniqueEmail);
-        await this.telePhone.fill(Telephone);
-        await this.page.waitForSelector('#input-password');
-        await this.passWord.fill(Password);
-        await this.confirmPassword.fill(PasswordConfirm);
+    await this.firstName.fill(FirstName);
+    await this.lastName.fill(LastName);
+    await this.email.fill(uniqueEmail);
+    await this.telePhone.fill(Telephone);
+    await this.page.waitForSelector("#input-password");
+    await this.passWord.fill(Password);
+    await this.confirmPassword.fill(PasswordConfirm);
   }
 
   async privacyPolicyRadio() {
-    await this.agreeRadio.waitFor({ state: 'visible', timeout: 5000 });
+    await this.agreeRadio.waitFor({ state: "visible", timeout: 5000 });
     await this.agreeRadio.click();
-    
   }
 
   async clickContinueButton() {
-    await this.continueButton.waitFor({ state: 'visible', timeout: 35000 });
+    await this.continueButton.waitFor({ state: "visible", timeout: 35000 });
     await this.continueButton.click();
   }
-    async verifyAccountCreation() {
-        await this.page.waitForLoadState('networkidle');
-        await this.page.waitForSelector("h1[class='page-title my-3']");
-    
+  async verifyAccountCreation() {
+    await this.page.waitForLoadState("networkidle");
+    await this.page.waitForSelector("h1[class='page-title my-3']");
 
-  const actualTextH1= await this.page.locator("h1[class='page-title my-3']").textContent();
-  expect(actualTextH1?.trim()).toBe('Your Account Has Been Created!');
-    }
- 
-    
-
+    const actualTextH1 = await this.page
+      .locator("h1[class='page-title my-3']")
+      .textContent();
+    expect(actualTextH1?.trim()).toBe("Your Account Has Been Created!");
+  }
 }
