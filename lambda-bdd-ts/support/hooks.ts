@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 import { chromium, Browser, Page } from '@playwright/test';
 import { LoginPage } from '../tests/pages/LoginPage';
 import { MegaMenuPage } from '../tests/pages/MegaMenuPage';
+=======
+import 'dotenv/config';
+import { chromium, Browser, Page } from '@playwright/test';
+import { LoginPage } from '../tests/pages/LoginPage';
+import { MegaMenuPage } from '../tests/pages/MegaMenuPage';
+import { registerPage } from '../tests/pages/registerPage';
+import {homePage} from '../tests/pages/homePage';
+>>>>>>> test/Suyash_24June25_1
 import {
   Before,
   After,
@@ -19,6 +28,11 @@ interface CustomWorld {
   browser: Browser;
   loginPage: LoginPage;
   megamenuPage: MegaMenuPage;
+<<<<<<< HEAD
+=======
+  registerpage:registerPage; 
+  homepage: homePage;
+>>>>>>> test/Suyash_24June25_1
  
 }
 
@@ -39,13 +53,24 @@ Before(async function (this: CustomWorld) {
   this.page = await context.newPage();
   this.loginPage = new LoginPage(this.page);
   this.megamenuPage = new MegaMenuPage(this.page);
+<<<<<<< HEAD
 
+=======
+  this.registerpage = new registerPage(this.page);
+  this.homepage = new homePage(this.page);
+>>>>>>> test/Suyash_24June25_1
 
   // ✅ Only perform login if no saved session
   if (!useStoredState) {
     const username = getEnvVariable('LOGIN_EMAIL');
     const password = getEnvVariable('LOGIN_PASSWORD');
 
+<<<<<<< HEAD
+=======
+    console.log('🔐 LOGIN_EMAIL from env:', process.env.LOGIN_EMAIL);
+  console.log('🔐 LOGIN_PASSWORD from env:', process.env.LOGIN_PASSWORD);
+
+>>>>>>> test/Suyash_24June25_1
     // 🟡 Ensure the login page loads before interacting
     await this.page.goto('https://ecommerce-playground.lambdatest.io/index.php?route=account/login', {
       waitUntil: 'load'
