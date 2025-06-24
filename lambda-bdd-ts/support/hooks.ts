@@ -1,9 +1,6 @@
 import 'dotenv/config';
 import { chromium, Browser, Page } from '@playwright/test';
-import { LoginPage } from '../tests/pages/LoginPage';
-import { MegaMenuPage } from '../tests/pages/MegaMenuPage';
-import { registerPage } from '../tests/pages/registerPage';
-import {homePage} from '../tests/pages/homePage';
+import { POManager } from '../tests/pages/POManager';
 
 import {
   Before,
@@ -21,10 +18,7 @@ import { getEnvVariable } from '../support/utils/env'; // ✅ Load env vars from
 interface CustomWorld {
   page: Page;
   browser: Browser;
-  loginPage: LoginPage;
-  megamenuPage: MegaMenuPage;
-  registerpage:registerPage; 
-  homepage: homePage;
+  poManager: POManager;
  
 }
 
@@ -43,10 +37,7 @@ Before(async function (this: CustomWorld) {
     : await this.browser.newContext();
 
   this.page = await context.newPage();
-  this.loginPage = new LoginPage(this.page);
-  this.megamenuPage = new MegaMenuPage(this.page);
-  this.registerpage = new registerPage(this.page);
-  this.homepage = new homePage(this.page);
+  this.poManager = new POManager(this.page);
 
   // ✅ Only perform login if no saved session
   if (!useStoredState) {
@@ -59,10 +50,14 @@ Before(async function (this: CustomWorld) {
     await this.page.goto('https://ecommerce-playground.lambdatest.io/index.php?route=account/login', {
       waitUntil: 'load'
     });
-
-    await this.loginPage.validLogin(username, password);
-    await this.loginPage.clickLoginBtn();
-    await this.loginPage.validSuccessfulLogin();
+ 
+    const Credentials = this.poManager.getLoginPage();
+    await Credentials.validLogin(username, password);
+    //await this.loginPage.validLogin(username, password);
+    await Credentials.clickLoginBtn();
+    await Credentials.validSuccessfulLogin();
+    //await this.loginPage.clickLoginBtn();
+    //await this.loginPage.validSuccessfulLogin();
 
     // ✅ Save session state
     await context.storageState({ path: storageStatePath });
