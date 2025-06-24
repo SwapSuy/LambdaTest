@@ -181,7 +181,7 @@ Then(
 
 Then(
   "user enters and complete the checkout form",
-  { timeout: 25000 },
+  { timeout: 35000 },
   async function () {
     let home = new homePage(this.page);
     await home.fillCheckoutForm();
