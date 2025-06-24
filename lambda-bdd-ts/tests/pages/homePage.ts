@@ -426,4 +426,11 @@ export class homePage {
 
     console.log("All items has been removed from the cart");
   }
+
+    async removeFromCart1() {
+    await this.removeFromCartButton.waitFor({ state: "visible" });
+    await this.removeFromCartButton.click();
+    console.log("Clicked on the Remove from Cart button");
+    await this.page.waitForLoadState("networkidle");
+  }
 }
